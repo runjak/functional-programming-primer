@@ -16,3 +16,4 @@
 * https://www.slideshare.net/TjerkW/the-rise-of-functional-programming
 * https://github.com/seanhess/functional-javascript
 * https://en.wikipedia.org/wiki/Functional_programming
+* https://drboolean.gitbooks.io/mostly-adequate-guide/
