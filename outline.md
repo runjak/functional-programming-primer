@@ -17,3 +17,4 @@
 * https://github.com/seanhess/functional-javascript
 * https://en.wikipedia.org/wiki/Functional_programming
 * https://drboolean.gitbooks.io/mostly-adequate-guide/
+* http://www.lihaoyi.com/post/WhatsFunctionalProgrammingAllAbout.html
