@@ -1,3 +1,6 @@
+* My journey to the functions
+  * How did I stumble upon FP?
+  * How did FP change the way I approach programming?
 * A few words on lisp and AST
 * Freedom from state
   * State as the problem
@@ -9,6 +12,8 @@
   * Currying
   * compositon and associativity
 * A word on Patterns
+  * OOP has patterns - what are they?
+  * Where did my patterns go?
 * Typechecking
 * Evaluation strategies and rewriting
 * Fibonacci
