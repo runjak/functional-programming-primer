@@ -46,23 +46,42 @@
 					</section>
 					<section>
 						<ul>
-							<li>
-								Lisp wie in List Processing
-							</li>
-							<li>
-								Das Interessante ist der AST
-							</li>
-							<li>
-								Was bleibt: Metaprogramming und Listen
-							</li>
+							<li><a href="https://en.wikipedia.org/wiki/Lisp_(programming_language)">Erfunden 1958 von John McCarthy</a></li>
+							<li><b>LIS</b>t <b>P</b>rocessor</li>
+							<li>S-Expressions: Atome und Listen</li>
 						</ul>
 					</section>
 					<section>
-						Hier:
-						* Code
-						* AST
-						* LISP
-					</section>
+						<h3>Etwas JavaScript</h3>
+						<pre><code class="hljs">function abs(x) {
+  if (x >= 0) {
+    return x;
+  }
+
+  return -x;
+}</code></pre>
+				</section>
+				<section>
+					<h3>Ein AST</h3>
+					<img src="pics/ast.svg" />
+				</section>
+				<section>
+					<h3>Lisp S-Expressions</h3>
+					<pre><code class="hljs">(defun abs (x)
+  (if
+    ((>= x 0) x)
+    (true -x)
+  )
+)</code></pre>
+				</section>
+				<section>
+					<h3>Wir erahnen:</h3>
+					<ul>
+						<li>Listen können sehr viel</li>
+						<li>Komposition von Code geht gut mit Listen und Funktionen</li>
+						<li>Lisp kann da was mit selbstmodifizierenden Code</li>
+					</ul>
+				</section>
 				</section>
 				<section>
 					<section>
