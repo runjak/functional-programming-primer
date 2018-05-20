@@ -81,40 +81,63 @@
 						<li class="fragment">$x sind hier Listen</li>
 						<li class="fragment">&rarr; Komposition</li>
 						<li class="fragment">&rarr; Selbstmodifikation</li>
+						<li class="fragment">
+							Paul Graham <a href="http://www.paulgraham.com/rootsoflisp.html">roots of lisp</a>
+						</li>
 					</ul>
 				</section>
 				</section>
 				<section>
 					<section>
 						<h2>Freedom from state</h2>
+						<ul>
+							<li class="fragment">State ist problematisch</li>
+							<li class="fragment">State wird gebraucht</li>
+							<li class="fragment">&rarr; State muss gemanaged bzw. isoliert werden</li>
+						</ul>
 					</section>
 					<section>
-						State ist problematisch
-						Wegen State lohnen sich Programme mehr
+						<h3>OOP und State</h3>
+						<ul>
+							<li>Zusammengehöriges kapseln</li>
+							<li>State bzw. Funktionalität kapseln</li>
+							<li class="fragment">Singletons</li>
+							<li class="fragment">State only begets more state</li>
+						</ul>
 					</section>
 					<section>
-						State isolieren ist clever
-						* OOP hat da eine Strategie
-						* FP hat eine andere Strategie
-						  * Abstract over a function
+						FP state management
+						Abstract over a function
 					</section>
 				</section>
 				<section>
 					<section>
 						<h2>Funktionen in der Mathematik</h2>
+						<ul>
+							<li class="fragment">Abbildungen zwischen Mengen (Algorithms yeah!)</li>
+							<li class="fragment">Deterministisch (same y for same x)</li>
+							<li class="fragment">Deklarativ (was nicht wie)</li>
+						</ul>
 					</section>
 					<section>
-						Die Mathematik kennt Funktionen als diese Dinger, die:
-						* Quell-Mengen deterministisch in Zielmengen überführen
-						* Zuordnungsvorschrift, um aus A B zu machen (Algorithmus yeah)
+						<h3>Pure code</h3>
+						<div>Was soll das sein?</div>
+						<ul>
+							<li class="fragment">Deterministischer code</li>
+							<li class="fragment">Daten sind immutable</li>
+						</ul>
 					</section>
 					<section>
-						What is pure?
-						* Referential transparency
-						* Determinism
-						* Management of complexity
-						* Abillity of compositon
-						* Ease of debugging
+						<h3>Pure code</h3>
+						<div>Was bringt uns das?</div>
+						<ul>
+							<li class="fragment">Referentielle transparenz</li>
+							<li class="fragment">Beschränkung von logischer Komplexität</li>
+							<li class="fragment">Beschränkung von zeitlicher Komplexität</li>
+							<li class="fragment">Komposition</li>
+							<li class="fragment">Einfaches Testen</li>
+							<li class="fragment">Einfaches Debuggen</li>
+						</ul>
 					</section>
 				</section>
 				<section>
@@ -122,9 +145,11 @@
 						<h2>Patterns</h2>
 					</section>
 					<section>
-						* Pattern sind inherent für eine Abstraktionsebene
-						* Was in Assembly ein Pattern ist ist in einer anderen Sprache odinär
-						* In gewisser Hinsicht ist das, was beim Objektorientierten Paradigma vorherscht auch ein Pattern bzw. eine Abstraktion
+						<ul>
+							<li>Pattern sind inherent für eine Abstraktionsebene</li>
+							<li>Was in Assembly ein Pattern ist ist in einer anderen Sprache odinär</li>
+							<li>In gewisser Hinsicht ist das, was beim Objektorientierten Paradigma vorherscht auch ein Pattern bzw. eine Abstraktion</li>
+						</ul>
 					</section>
 					<section>
 						Spoilered by Lisp: List Processing
