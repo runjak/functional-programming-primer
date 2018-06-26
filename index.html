@@ -27,6 +27,7 @@
 				<section>
 					<img src="pics/i-should-cat.jpg" />
 					<a href="https://github.com/runjak/functional-programming-primer">github.com/runjak/functional-programming-primer</a>
+					<div>Version mit gemischten Sprachen ¯\_(ツ)_/¯</div>
 				</section>
 				<section>
 					<h2>Überblick:</h2>
@@ -125,6 +126,7 @@
 						<ul>
 							<li class="fragment">Deterministischer code</li>
 							<li class="fragment">Daten sind immutable</li>
+							<li class="fragment">&rarr; keine Nebeneffekte</li>
 						</ul>
 					</section>
 					<section>
@@ -143,29 +145,56 @@
 				<section>
 					<section>
 						<h2>Patterns</h2>
-					</section>
-					<section>
 						<ul>
-							<li>Pattern sind inherent für eine Abstraktionsebene</li>
-							<li>Was in Assembly ein Pattern ist ist in einer anderen Sprache odinär</li>
-							<li>In gewisser Hinsicht ist das, was beim Objektorientierten Paradigma vorherscht auch ein Pattern bzw. eine Abstraktion</li>
+							<li class="fragment">Pattern existieren bzgl. einer Abstraktionsebene</li>
+							<li class="fragment">Loops in Assembly</li>
+							<li class="fragment">OOP: Classes and Stuff</li>
 						</ul>
 					</section>
 					<section>
-						Spoilered by Lisp: List Processing
+						<h3>Clustering purity</h3>
+						<ul>
+							<li class="fragment">Functional code ♥ purity</li>
+							<li class="fragment">But purity can't even 🔥 a CPU</li>
+							<li class="fragment">&rarr; tie it together at an impure boundry</li>
+						</ul>
 					</section>
 					<section>
-						Higher order functions
-						* sortBy
-						* Data.Function on
+						<h3>List Processing</h3>
+						<ul>
+							<li>Spoilered by Lisp</li>
+							<li class="fragment">Avoid indices and off-by-one nonsense</li>
+							<li class="fragment">Embrace map, reduce, …</li>
+							<li class="fragment">Be bold and mix functions and lists</li>
+						</ul>
 					</section>
 					<section>
-						Funktionskomposition
-						* Reuse
-						* Refactoring bc. Assoziativität
+						<h3>Higher order functions</h3>
+						<ul>
+							<li>sortBy, compareOn, createSelector, initializeTracking</li>
+							<li>Functions as first class citizens</li>
+						</ul>
 					</section>
 					<section>
-						Currying
+						<h3>Funktionskomposition</h3>
+						<ul>
+							<li>Compose complex structures/code from simple functions (dynamically)</li>
+							<li class="fragment">Reuse primitives</li>
+							<li class="fragment">Assoziativität macht Refactoring leckerer</li>
+						</ul>
+					</section>
+					<section>
+						<h3>Currying</h3>
+						<div>Props an Haskell Curry, Moses Schönfinkel</div>
+						<ul>
+							<li>Known to math since 1893</li>
+							<li>Available in code since about 1967</li>
+							<li>Partial application of functions</li>
+						</ul>
+						<pre><code class="hlhs">const add = x => y => x + y;
+
+[1,2,3].map(add(5)); // [6,7,8]
+						</code></pre>
 					</section>
 				</section>
 				<section>
