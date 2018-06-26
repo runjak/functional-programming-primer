@@ -205,19 +205,51 @@
 						<img src="pics/runtime.jpg" />
 					</section>
 					<section>
-						Typen sind fast wie Mengen
+						<h3>Typen und Mengen</h3>
+						<ul>
+							<li class="fragment">Jeder Wert hat seinen eigenen Typ</li>
+							<li class="fragment">Typen lassen sich zu anderen Typen zusammenfassen</li>
+							<li class="fragment">Curry-Howard-Correspondence (1934, 1958, 1969)</li>
+						</ul>
 					</section>
 					<section>
-						Typen mit Flow
+						<h3>Type union</h3>
+						<ul>
+							<li><pre><code class="hljs">type FooBar = 'foo' | 'bar';</code></pre></li>
+							<li><pre><code class="hljs">type Thing = string | number;</code></pre></li>
+							<li class="fragment"><pre><code class="hljs">type MaybeString = ?string;</code></pre></li>
+							<li class="fragment">Auch bekannt als sum type</li>
+						</ul>
 					</section>
 					<section>
-						Type union
+						<h3>Tuples</h3>
+						<ul>
+							<li><pre><code class="hljs">type Vector2D = [number, number];</code></pre></li>
+							<li class="fragment">Auch bekannt als product type</li>
+							<li class="fragment">Bonus level: named tuples:<br /><pre><code class="hljs">type Vector2D = {
+	x: number,
+	y: number,
+};</code></pre></li>
+						</ul>
 					</section>
 					<section>
-						Type intersection
+						<h3>Type intersection</h3>
+						<ul>
+							<li class="fragment">Type extension:<pre><code class="hljs">type Vector3D = {
+	z: number,
+} & Vector2D;</code></pre></li>
+							<li class="fragment">Constraint tracking:<pre><code class="hljs">type Foo = FooBar
+& 'foo';</code></pre></li>
+						</ul>
 					</section>
 					<section>
-						Type refinements
+						<h3>Type refinements</h3>
+						<div>Bauen auf type intersection auf</div>
+						<pre><code class="hljs">function foo(x: ?number) {
+	if (x !== null && x !== undefined) {
+		// x: number
+	}
+}</code></pre>
 					</section>
 				</section>
 				<section>
