@@ -1,59 +1,64 @@
 <!doctype html>
 <html>
-	<head>
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-		<title>Functional Programming Primer</title>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-		<link rel="stylesheet" href="css/reveal.css">
-		<link rel="stylesheet" href="css/theme/moon.css">
+	<title>Functional Programming Primer</title>
 
-		<!-- Theme used for syntax highlighting of code -->
-		<link rel="stylesheet" href="lib/css/zenburn.css">
+	<link rel="stylesheet" href="css/reveal.css">
+	<link rel="stylesheet" href="css/theme/moon.css">
 
-		<!-- Printing and PDF exports -->
-		<script>
-			var link = document.createElement( 'link' );
-			link.rel = 'stylesheet';
-			link.type = 'text/css';
-			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
-			document.getElementsByTagName( 'head' )[0].appendChild( link );
-		</script>
-	</head>
-	<body>
-		<div class="reveal">
-			<div class="slides">
+	<!-- Theme used for syntax highlighting of code -->
+	<link rel="stylesheet" href="lib/css/zenburn.css">
+
+	<!-- Printing and PDF exports -->
+	<script>
+		var link = document.createElement('link');
+		link.rel = 'stylesheet';
+		link.type = 'text/css';
+		link.href = window.location.search.match(/print-pdf/gi) ? 'css/print/pdf.css' : 'css/print/paper.css';
+		document.getElementsByTagName('head')[0].appendChild(link);
+	</script>
+</head>
+
+<body>
+	<div class="reveal">
+		<div class="slides">
+			<section>
+				<img src="pics/i-should-cat.jpg" />
+				<a href="https://github.com/runjak/functional-programming-primer">github.com/runjak/functional-programming-primer</a>
+			</section>
+			<section>
+				<h2>Overview:</h2>
+				<ol>
+					<li>A few words on Lisp</li>
+					<li>Freedom from state</li>
+					<li>Functions in math</li>
+					<li>FP patterns</li>
+					<li>Typechecking</li>
+					<li>Outro</li>
+				</ol>
+			</section>
+			<section>
 				<section>
-					<img src="pics/i-should-cat.jpg" />
-					<a href="https://github.com/runjak/functional-programming-primer">github.com/runjak/functional-programming-primer</a>
-					<div>Version mit gemischten Sprachen ¯\_(ツ)_/¯</div>
+					<h2>A few words on Lisp</h2>
 				</section>
 				<section>
-					<h2>Überblick:</h2>
-					<ol>
-						<li>Ein paar Worte zu Lisp</li>
-						<li>Freedom from state</li>
-						<li>Funktionen in der Mathematik</li>
-						<li>Patterns</li>
-						<li>Typechecking</li>
-						<li>Outro</li>
-					</ol>
+					<ul>
+						<li>
+							<a href="https://en.wikipedia.org/wiki/Lisp_(programming_language)">Invented 1958 by John McCarthy</a>
+						</li>
+						<li>
+							<b>LIS</b>t
+							<b>P</b>rocessor</li>
+						<li>S-Expressions: Atoms and Lists</li>
+					</ul>
 				</section>
 				<section>
-					<section>
-						<h2>Ein paar Worte zu Lisp</h2>
-					</section>
-					<section>
-						<ul>
-							<li><a href="https://en.wikipedia.org/wiki/Lisp_(programming_language)">Erfunden 1958 von John McCarthy</a></li>
-							<li><b>LIS</b>t <b>P</b>rocessor</li>
-							<li>S-Expressions: Atome und Listen</li>
-						</ul>
-					</section>
-					<section>
-						<h3>Etwas JavaScript</h3>
-						<pre><code class="hljs">function abs(x) {
+					<h3>JavaScript 👀</h3>
+					<pre><code class="hljs">function abs(x) {
   if (x >= 0) {
     return x;
   }
@@ -62,7 +67,7 @@
 }</code></pre>
 				</section>
 				<section>
-					<h3>Ein AST</h3>
+					<h3>Look, an AST 🌳</h3>
 					<img src="pics/ast.svg" />
 				</section>
 				<section>
@@ -75,244 +80,276 @@
 )</code></pre>
 				</section>
 				<section>
-					<h3>Was da los?</h3>
+					<h3>🕵️‍ Whats happening here?</h3>
 					<ul>
-						<li>Eine Sprache aus der Ecke alles ist besteht aus $x.</li>
-						<li class="fragment">$x sind hier Listen</li>
-						<li class="fragment">&rarr; Komposition</li>
-						<li class="fragment">&rarr; Selbstmodifikation</li>
+						<li>A language where everything consists of $x.</li>
+						<li class="fragment">In this case $x means lists.</li>
+						<li class="fragment">&rarr; composition</li>
+						<li class="fragment">&rarr; selfmodification</li>
 						<li class="fragment">
-							Paul Graham <a href="http://www.paulgraham.com/rootsoflisp.html">roots of lisp</a>
+							Paul Graham:
+							<a href="http://www.paulgraham.com/rootsoflisp.html">roots of lisp</a>
 						</li>
 					</ul>
 				</section>
+			</section>
+			<section>
+				<section>
+					<h2>Freedom from state</h2>
+					<ul>
+						<li class="fragment">State is troublesome</li>
+						<li class="fragment">We need state</li>
+						<li class="fragment">&rarr; State must be managed and isolated</li>
+					</ul>
 				</section>
 				<section>
-					<section>
-						<h2>Freedom from state</h2>
-						<ul>
-							<li class="fragment">State ist problematisch</li>
-							<li class="fragment">State wird gebraucht</li>
-							<li class="fragment">&rarr; State muss gemanaged bzw. isoliert werden</li>
-						</ul>
-					</section>
-					<section>
-						<h3>OOP und State</h3>
-						<ul>
-							<li>Zusammengehöriges kapseln</li>
-							<li>State bzw. Funktionalität kapseln</li>
-							<li class="fragment">Singletons</li>
-							<li class="fragment">State only begets more state</li>
-						</ul>
-					</section>
-					<section>
-						FP state management
-						Abstract over a function
-					</section>
+					<h3>OOP and State</h3>
+					<ul>
+						<li>The class as a blueprint for portions of state</li>
+						<li>Clusters functionality</li>
+						<li>Clusters state</li>
+						<li class="fragment">Singletons</li>
+						<li class="fragment">State begets more state</li>
+					</ul>
 				</section>
 				<section>
-					<section>
-						<h2>Funktionen in der Mathematik</h2>
-						<ul>
-							<li class="fragment">Abbildungen zwischen Mengen (Algorithms yeah!)</li>
-							<li class="fragment">Deterministisch (same y for same x)</li>
-							<li class="fragment">Deklarativ (was nicht wie)</li>
-						</ul>
-					</section>
-					<section>
-						<h3>Pure code</h3>
-						<div>Was soll das sein?</div>
-						<ul>
-							<li class="fragment">Deterministischer code</li>
-							<li class="fragment">Daten sind immutable</li>
-							<li class="fragment">&rarr; keine Nebeneffekte</li>
-						</ul>
-					</section>
-					<section>
-						<h3>Pure code</h3>
-						<div>Was bringt uns das?</div>
-						<ul>
-							<li class="fragment">Referentielle transparenz</li>
-							<li class="fragment">Beschränkung von logischer Komplexität</li>
-							<li class="fragment">Beschränkung von zeitlicher Komplexität</li>
-							<li class="fragment">Komposition</li>
-							<li class="fragment">Einfaches Testen</li>
-							<li class="fragment">Einfaches Debuggen</li>
-						</ul>
-					</section>
+					<h3>⏳ aaaa ♻️!</h3>
+					<img src="pics/Haskell-logo-revolution.png" style="margin: 0; border: 0;" />
 				</section>
 				<section>
-					<section>
-						<h2>Patterns</h2>
-						<ul>
-							<li class="fragment">Pattern existieren bzgl. einer Abstraktionsebene</li>
-							<li class="fragment">Loops in Assembly</li>
-							<li class="fragment">OOP: Classes and Stuff</li>
-						</ul>
-					</section>
-					<section>
-						<h3>Clustering purity</h3>
-						<ul>
-							<li class="fragment">Functional code ♥ purity</li>
-							<li class="fragment">But purity can't even 🔥 a CPU</li>
-							<li class="fragment">&rarr; tie it together at an impure boundry</li>
-						</ul>
-					</section>
-					<section>
-						<h3>List Processing</h3>
-						<ul>
-							<li>Spoilered by Lisp</li>
-							<li class="fragment">Avoid indices and off-by-one nonsense</li>
-							<li class="fragment">Embrace map, reduce, …</li>
-							<li class="fragment">Be bold and mix functions and lists</li>
-						</ul>
-					</section>
-					<section>
-						<h3>Higher order functions</h3>
-						<ul>
-							<li>sortBy, compareOn, createSelector, initializeTracking</li>
-							<li>Functions as first class citizens</li>
-						</ul>
-					</section>
-					<section>
-						<h3>Funktionskomposition</h3>
-						<ul>
-							<li>Compose complex structures/code from simple functions (dynamically)</li>
-							<li class="fragment">Reuse primitives</li>
-							<li class="fragment">Assoziativität macht Refactoring leckerer</li>
-						</ul>
-					</section>
-					<section>
-						<h3>Currying</h3>
-						<div>Props an Haskell Curry, Moses Schönfinkel</div>
-						<ul>
-							<li>Known to math since 1893</li>
-							<li>Available in code since about 1967</li>
-							<li>Partial application of functions</li>
-						</ul>
-						<pre><code class="hlhs">const add = x => y => x + y;
+					<h3>FP and State</h3>
+					FP state management Abstract over a function
+				</section>
+			</section>
+			<section>
+				<section>
+					<h2>Functions in math</h2>
+					<ul>
+						<li class="fragment">Projections from one set onto another</li>
+						<li class="fragment">Algorithms 🚀</li>
+						<li class="fragment">Deterministic (same y for same x)</li>
+						<li class="fragment">Declarative (what not why)</li>
+					</ul>
+				</section>
+				<section>
+					<h3>Pure code</h3>
+					<div>What is purity? 🙌</div>
+					<ul>
+						<li class="fragment">Deterministic code</li>
+						<li class="fragment">Data is immutable</li>
+						<li class="fragment">&rarr; no side effects</li>
+					</ul>
+				</section>
+				<section>
+					<h3>Pure code</h3>
+					<div>What do we get from it?</div>
+					<ul>
+						<li class="fragment">Referential transparency</li>
+						<li class="fragment">Reduction of logical complexity</li>
+						<li class="fragment">Reduction of concurrent complexity</li>
+						<li class="fragment">Composition</li>
+						<li class="fragment">Simlified testing</li>
+						<li class="fragment">Simplified debugging</li>
+					</ul>
+				</section>
+			</section>
+			<section>
+				<section>
+					<h2>Patterns</h2>
+					<ul>
+						<li class="fragment">Pattern existit in relation to a level of abstraction</li>
+						<li class="fragment">Loops in assembly</li>
+						<li class="fragment">OOP: classes and stuff</li>
+					</ul>
+				</section>
+				<section>
+					<h3>Clustering purity</h3>
+					<ul>
+						<li class="fragment">Functional code 💞 purity</li>
+						<li class="fragment">But purity can't even 🔥 a CPU</li>
+						<li class="fragment">&rarr; tie it together at an impure boundry</li>
+					</ul>
+				</section>
+				<section>
+					<h3>Immutabillity</h3>
+					<ul>
+						<li class="fragment">Don't change a thing!</li>
+						<li class="fragment">Build something new instead!</li>
+						<li class="fragment">&rarr; you can always share</li>
+					</ul>
+					FIXME FIXME FIXME CODE FIXME FIXME FIXME
+				</section>
+				<section>
+					<h3>List Processing</h3>
+					<ul>
+						<li>Spoilered by Lisp</li>
+						<li class="fragment">Avoid indices and off-by-one nonsense</li>
+						<li class="fragment">Embrace map, reduce, …</li>
+						<li class="fragment">Be bold and mix functions and lists</li>
+					</ul>
+				</section>
+				<section>
+					<h3>Higher order functions</h3>
+					<ul>
+						<li>sortBy, compareOn, createSelector, initializeTracking</li>
+						<li>Functions as first class citizens</li>
+					</ul>
+				</section>
+				<section>
+					<h3>Composition</h3>
+					<ul>
+						<li>Compose complex structures/code from simple functions (dynamically)</li>
+						<li class="fragment">Reuse primitives</li>
+						<li class="fragment">Associativity simplifies refactoring</li>
+					</ul>
+				</section>
+				<section>
+					<h3>Currying</h3>
+					<div>Props an Haskell Curry, Moses Schönfinkel</div>
+					<ul>
+						<li>Known to math since 1893</li>
+						<li>Available in code since about 1967</li>
+						<li>Partial application of functions</li>
+					</ul>
+					<pre><code class="hlhs">const add = x => y => x + y;
 
 [1,2,3].map(add(5)); // [6,7,8]
 						</code></pre>
-					</section>
+				</section>
+			</section>
+			<section>
+				<section>
+					<h2>Typechecking</h2>
 				</section>
 				<section>
-					<section>
-						<h2>Typechecking</h2>
-					</section>
-					<section>
-						<img src="pics/runtime.jpg" />
-					</section>
-					<section>
-						<h3>Typen und Mengen</h3>
-						<ul>
-							<li class="fragment">Jeder Wert hat seinen eigenen Typ</li>
-							<li class="fragment">Typen lassen sich zu anderen Typen zusammenfassen</li>
-							<li class="fragment">Curry-Howard-Correspondence (1934, 1958, 1969)</li>
-						</ul>
-					</section>
-					<section>
-						<h3>Type union</h3>
-						<ul>
-							<li><pre><code class="hljs">type FooBar = 'foo' | 'bar';</code></pre></li>
-							<li><pre><code class="hljs">type Thing = string | number;</code></pre></li>
-							<li class="fragment"><pre><code class="hljs">type MaybeString = ?string;</code></pre></li>
-							<li class="fragment">Auch bekannt als sum type</li>
-						</ul>
-					</section>
-					<section>
-						<h3>Tuples</h3>
-						<ul>
-							<li><pre><code class="hljs">type Vector2D = [number, number];</code></pre></li>
-							<li class="fragment">Auch bekannt als product type</li>
-							<li class="fragment">Bonus level: named tuples:<br /><pre><code class="hljs">type Vector2D = {
+					<img src="pics/runtime.jpg" />
+				</section>
+				<section>
+					<h3>Types and Sets</h3>
+					<ul>
+						<li class="fragment">Each value is it's own type</li>
+						<li class="fragment">Types can be clustered into other types</li>
+						<li class="fragment">Curry-Howard-Correspondence (1934, 1958, 1969)</li>
+					</ul>
+				</section>
+				<section>
+					<h3>Type union</h3>
+					<ul>
+						<li>
+							<pre><code class="hljs">type FooBar = 'foo' | 'bar';</code></pre>
+						</li>
+						<li>
+							<pre><code class="hljs">type Thing = string | number;</code></pre>
+						</li>
+						<li class="fragment">
+							<pre><code class="hljs">type MaybeString = ?string;</code></pre>
+						</li>
+						<li class="fragment">Also known as sum type</li>
+					</ul>
+				</section>
+				<section>
+					<h3>Tuples</h3>
+					<ul>
+						<li>
+							<pre><code class="hljs">type Vector2D = [number, number];</code></pre>
+						</li>
+						<li class="fragment">Also known as product type</li>
+						<li class="fragment">Bonus level: named tuples:
+							<br />
+							<pre><code class="hljs">type Vector2D = {
 	x: number,
 	y: number,
-};</code></pre></li>
-						</ul>
-					</section>
-					<section>
-						<h3>Type intersection</h3>
-						<ul>
-							<li class="fragment">Type extension:<pre><code class="hljs">type Vector3D = {
+};</code></pre>
+						</li>
+					</ul>
+				</section>
+				<section>
+					<h3>Type intersection</h3>
+					<ul>
+						<li class="fragment">Type extension:
+							<pre><code class="hljs">type Vector3D = {
 	z: number,
-} & Vector2D;</code></pre></li>
-							<li class="fragment">Constraint tracking:<pre><code class="hljs">type Foo = FooBar
-& 'foo';</code></pre></li>
-						</ul>
-					</section>
-					<section>
-						<h3>Type refinements</h3>
-						<div>Bauen auf type intersection auf</div>
-						<pre><code class="hljs">function foo(x: ?number) {
+} & Vector2D;</code></pre>
+						</li>
+						<li class="fragment">Constraint tracking:
+							<pre><code class="hljs">type Foo = FooBar
+& 'foo';</code></pre>
+						</li>
+					</ul>
+				</section>
+				<section>
+					<h3>Type refinements</h3>
+					<div>Extending the concept of type intersection</div>
+					<pre><code class="hljs">function foo(x: ?number) {
 	if (x !== null && x !== undefined) {
 		// x: number
 	}
 }</code></pre>
-					</section>
+				</section>
+			</section>
+			<section>
+				<section>
+					<h2>Outro</h2>
 				</section>
 				<section>
-					<section>
-						<h2>Outro</h2>
-					</section>
-					<section>
-						<h3>Things I found helpful</h3>
-						<ul>
-							<li>Cluster code with modules</li>
-							<li>Think in terms of dataflow - not by clustering states</li>
-							<li>Explore transformations of code</li>
-							<li>Give it a try if you havn't! It broadened my perspective.</li>
-						</ul>
-					</section>
-					<section>
-						<h2>Further reading</h2>
-						<ul>
-							<li>
-								<a href="https://www.slideshare.net/TjerkW/the-rise-of-functional-programming">slideshare.net/TjerkW/the-rise-of-functional-programming</a>
-							</li>
-							<li>
-								<a href="https://github.com/seanhess/functional-javascript">github.com/seanhess/functional-javascript</a>
-							</li>
-							<li>
-								<a href="https://en.wikipedia.org/wiki/Functional_programming">en.wikipedia.org/wiki/Functional_programming</a>
-							</li>
-							<li>
-								<a href="https://drboolean.gitbooks.io/mostly-adequate-guide/">drboolean.gitbooks.io/mostly-adequate-guide</a>
-							</li>
-							<li>
-								<a href="http://www.lihaoyi.com/post/WhatsFunctionalProgrammingAllAbout.html">lihaoyi.com/post/WhatsFunctionalProgrammingAllAbout.html</a>
-							</li>
-							<li>
-								<a href="http://learnyouahaskell.com/chapters">learnyouahaskell.com/chapters</a>
-							</li>
-							<li>
-								<a href="http://book.realworldhaskell.org/read/">book.realworldhaskell.org/read</a>
-							</li>
-						</ul>
-					</section>
-					<section>
-						<h3>Questions?</h3>
-						<img src="pics/question.jpg" />
-					</section>
+					<h3>Things I found helpful</h3>
+					<ul>
+						<li>Cluster code with modules</li>
+						<li>Think in terms of dataflow - not by clustering states</li>
+						<li>Explore transformations of code</li>
+						<li>Give it a try if you havn't! It broadened my perspective.</li>
+					</ul>
 				</section>
-			</div>
+				<section>
+					<h2>Further reading</h2>
+					<ul>
+						<li>
+							<a href="https://www.slideshare.net/TjerkW/the-rise-of-functional-programming">slideshare.net/TjerkW/the-rise-of-functional-programming</a>
+						</li>
+						<li>
+							<a href="https://github.com/seanhess/functional-javascript">github.com/seanhess/functional-javascript</a>
+						</li>
+						<li>
+							<a href="https://en.wikipedia.org/wiki/Functional_programming">en.wikipedia.org/wiki/Functional_programming</a>
+						</li>
+						<li>
+							<a href="https://drboolean.gitbooks.io/mostly-adequate-guide/">drboolean.gitbooks.io/mostly-adequate-guide</a>
+						</li>
+						<li>
+							<a href="http://www.lihaoyi.com/post/WhatsFunctionalProgrammingAllAbout.html">lihaoyi.com/post/WhatsFunctionalProgrammingAllAbout.html</a>
+						</li>
+						<li>
+							<a href="http://learnyouahaskell.com/chapters">learnyouahaskell.com/chapters</a>
+						</li>
+						<li>
+							<a href="http://book.realworldhaskell.org/read/">book.realworldhaskell.org/read</a>
+						</li>
+					</ul>
+				</section>
+				<section>
+					<h3>Questions?</h3>
+					<img src="pics/question.jpg" />
+				</section>
+			</section>
 		</div>
+	</div>
 
-		<script src="lib/js/head.min.js"></script>
-		<script src="js/reveal.js"></script>
+	<script src="lib/js/head.min.js"></script>
+	<script src="js/reveal.js"></script>
 
-		<script>
-			// More info about config & dependencies:
-			// - https://github.com/hakimel/reveal.js#configuration
-			// - https://github.com/hakimel/reveal.js#dependencies
-			Reveal.initialize({
-				dependencies: [
-					{ src: 'plugin/markdown/marked.js' },
-					{ src: 'plugin/markdown/markdown.js' },
-					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
-					{ src: 'plugin/math/math.js' },
-				]
-			});
-		</script>
-	</body>
+	<script>
+		// More info about config & dependencies:
+		// - https://github.com/hakimel/reveal.js#configuration
+		// - https://github.com/hakimel/reveal.js#dependencies
+		Reveal.initialize({
+			dependencies: [
+				{ src: 'plugin/markdown/marked.js' },
+				{ src: 'plugin/markdown/markdown.js' },
+				{ src: 'plugin/highlight/highlight.js', async: true, callback: function () { hljs.initHighlightingOnLoad(); } },
+				{ src: 'plugin/math/math.js' },
+			]
+		});
+	</script>
+</body>
+
 </html>
