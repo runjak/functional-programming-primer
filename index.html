@@ -118,7 +118,21 @@
 				</section>
 				<section>
 					<h3>FP and State</h3>
-					FP state management Abstract over a function
+					<ul>
+						<li>Look, a pure function:
+							<pre><code class="hlhs">function score(t: Thing): ScoredThing {…}</code></pre>
+						</li>
+						<li class="fragment">
+							Let's decorate awareness of previous scores:
+							<pre><code class="hlhs">function score(score: Score, t: Thing):
+  [ScoredThing, Score] {…}</code></pre>
+						</li>
+						<li class="fragment">
+							We can decorate state and hide it away:
+							<pre><code>const statefulScore = (s: Score) =>
+	(t: Thing) => [ScoredThing, Score];</code></pre>
+						</li>
+					</ul>
 				</section>
 			</section>
 			<section>
@@ -157,7 +171,7 @@
 				<section>
 					<h2>Patterns</h2>
 					<ul>
-						<li class="fragment">Pattern existit in relation to a level of abstraction</li>
+						<li class="fragment">Pattern exist in relation to a level of abstraction</li>
 						<li class="fragment">Loops in assembly</li>
 						<li class="fragment">OOP: classes and stuff</li>
 					</ul>
@@ -171,13 +185,37 @@
 					</ul>
 				</section>
 				<section>
-					<h3>Immutabillity</h3>
+					<h3>Immutabillity (1/2)</h3>
 					<ul>
-						<li class="fragment">Don't change a thing!</li>
-						<li class="fragment">Build something new instead!</li>
-						<li class="fragment">&rarr; you can always share</li>
+						<li>
+							If you say 'const x = 5;' don't be a liar.
+						</li>
+						<li class="fragment">
+							Don't change 👵 - make new ✨.
+						</li>
+						<li class="fragment">
+							<q>
+								Do not communicate by sharing memory; instead, share memory by communicating.
+							</q>
+							-
+							<a href="https://blog.golang.org/share-memory-by-communicating">blog.golang.org (2010-07-13)</a>
+						</li>
+						<li class="fragment">
+							<pre><code class="hljs">const vec3d = { ...vec2d, z : 0 };</code></pre>
+						</li>
 					</ul>
-					FIXME FIXME FIXME CODE FIXME FIXME FIXME
+				</section>
+				<section>
+					<h3>Immutabillity (2/2)</h3>
+					<ul>
+						<li>JS interpreter can optimize for shapes</li>
+						<li class="fragment">Memory management - avoids leaks, simplifies GC</li>
+						<li class="fragment">Concurrency: avoid worries with mutices, races, …</li>
+						<li class="fragment">
+							<a href="https://en.wikipedia.org/wiki/Purely_functional_data_structure">Functional data structures</a> (
+							<a href="https://en.wikipedia.org/wiki/Zipper_(data_structure)">zippers</a>, (
+							<a href="https://en.wikipedia.org/wiki/Finger_tree">finger-</a>)trees)</li>
+					</ul>
 				</section>
 				<section>
 					<h3>List Processing</h3>
@@ -186,13 +224,17 @@
 						<li class="fragment">Avoid indices and off-by-one nonsense</li>
 						<li class="fragment">Embrace map, reduce, …</li>
 						<li class="fragment">Be bold and mix functions and lists</li>
+						<li class="fragment">Generalizes to other structures (
+							<a href="http://functor.sk/" target="_blank">functor</a>)
+						</li>
 					</ul>
 				</section>
 				<section>
 					<h3>Higher order functions</h3>
+					<img src="pics/yoDawgFunctions.jpeg" />
 					<ul>
-						<li>sortBy, compareOn, createSelector, initializeTracking</li>
-						<li>Functions as first class citizens</li>
+						<li class="fragment">sortBy, compareOn, createSelector, initializeTracking</li>
+						<li class="fragment">Functions as first class citizens</li>
 					</ul>
 				</section>
 				<section>
@@ -200,7 +242,11 @@
 					<ul>
 						<li>Compose complex structures/code from simple functions (dynamically)</li>
 						<li class="fragment">Reuse primitives</li>
-						<li class="fragment">Associativity simplifies refactoring</li>
+						<li class="fragment">
+							Associativity simplifies refactoring
+							<pre class="fragment"><code class="hljs">xs.map(f).map(g) // xs.map(x => g(f(x)))</code></pre>
+							<pre class="fragment"><code class="hljs">x => f(g(h(x))) // const i = (x) => g(h(x)); x => f(i(x))</code></pre>
+						</li>
 					</ul>
 				</section>
 				<section>
@@ -211,7 +257,7 @@
 						<li>Available in code since about 1967</li>
 						<li>Partial application of functions</li>
 					</ul>
-					<pre><code class="hlhs">const add = x => y => x + y;
+					<pre class="fragment"><code class="hljs">const add = x => y => x + y;
 
 [1,2,3].map(add(5)); // [6,7,8]
 						</code></pre>
@@ -229,7 +275,12 @@
 					<ul>
 						<li class="fragment">Each value is it's own type</li>
 						<li class="fragment">Types can be clustered into other types</li>
-						<li class="fragment">Curry-Howard-Correspondence (1934, 1958, 1969)</li>
+						<li class="fragment">
+							<a href="https://en.wikipedia.org/wiki/Hindley%E2%80%93Milner_type_system">Hindley-Milner (1969)</a>
+						</li>
+						<li class="fragment">
+							<a href="https://en.wikipedia.org/wiki/Curry%E2%80%93Howard_correspondence">Curry-Howard-Correspondence (1934, 1958, 1969)</a>
+						</li>
 					</ul>
 				</section>
 				<section>
@@ -297,7 +348,7 @@
 						<li>Cluster code with modules</li>
 						<li>Think in terms of dataflow - not by clustering states</li>
 						<li>Explore transformations of code</li>
-						<li>Give it a try if you havn't! It broadened my perspective.</li>
+						<li>Give it a try if you haven't! It broadened my perspective.</li>
 					</ul>
 				</section>
 				<section>
